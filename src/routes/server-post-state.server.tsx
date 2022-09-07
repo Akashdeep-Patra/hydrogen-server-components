@@ -1,7 +1,7 @@
 import { useQuery } from '@shopify/hydrogen';
 import { Suspense } from 'react';
 import Page from '../components/Page.server';
-import Post from '../components/Post.server';
+import PostWithData from '../components/PostWithdata.client';
 import Skeleton from '../components/Skeleton';
 import { getPosts } from '../services/index';
 
@@ -21,9 +21,7 @@ export const PostList = () => {
   return (
     <>
       {data.data?.map((post) => (
-        <Suspense key={post.id} fallback={<Skeleton count={1} />}>
-          <Post key={post.id} postId={post.id} />
-        </Suspense>
+        <PostWithData key={post.id} post={post} />
       ))}
     </>
   );

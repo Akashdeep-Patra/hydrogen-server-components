@@ -1,9 +1,9 @@
-import { useQuery } from '@shopify/hydrogen';
 import { Suspense } from 'react';
 import Page from '../components/Page.server';
-import Post from '../components/Post.server';
-import Skeleton from '../components/Skeleton';
 import { getPosts } from '../services/index';
+import { useQuery } from '@shopify/hydrogen';
+import Post from '../components/Post.client';
+import Skeleton from '../components/Skeleton';
 
 export default function Home() {
   return (
@@ -14,6 +14,7 @@ export default function Home() {
     </Page>
   );
 }
+
 export const PostList = () => {
   const { data } = useQuery(['posts'], getPosts);
   if (!data?.data) return <span>Oops something went wrong on the Server</span>;
@@ -21,9 +22,7 @@ export const PostList = () => {
   return (
     <>
       {data.data?.map((post) => (
-        <Suspense key={post.id} fallback={<Skeleton count={1} />}>
-          <Post key={post.id} postId={post.id} />
-        </Suspense>
+        <Post key={post.id} postId={post.id} />
       ))}
     </>
   );
