@@ -1,7 +1,7 @@
 import { useQuery } from '@shopify/hydrogen';
 import { Suspense } from 'react';
 import Page from '../components/Page.server';
-import PostWithData from '../components/PostWithdata.client';
+import PostWithData from '../components/PostWithData.client';
 import Skeleton from '../components/Skeleton';
 import { getPosts } from '../services/index';
 
