@@ -1,7 +1,7 @@
 import { useQuery } from '@shopify/hydrogen';
 import { getPostDataById } from '../services/index';
 import PinkHeart from '../svg-components/PinkHeart';
-
+import os from 'os';
 export default function Post({ postId }: { postId: string }) {
   const { data: post } = useQuery(['post', postId], async () => {
     return await getPostDataById(postId);
@@ -27,6 +27,8 @@ export default function Post({ postId }: { postId: string }) {
         </div>
       </div>
       <div className=' flex items-end cursor-pointer gap-2 absolute right-2 bottom-2'>
+        <span>Rendered at :{new Date().toLocaleTimeString()}</span>
+        <span> Platform: {os.hostname()}</span>
         <PinkHeart />
         <div className=' capitalize font-bold'> {likes}</div>
       </div>

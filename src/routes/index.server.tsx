@@ -1,30 +1,44 @@
-import { useQuery } from '@shopify/hydrogen';
-import { Suspense } from 'react';
+import { Link } from '@shopify/hydrogen';
 import Page from '../components/Page.server';
-import Post from '../components/Post.server';
-import Skeleton from '../components/Skeleton';
-import { getPosts } from '../services/index';
 
-export default function Home() {
+const Home = () => {
   return (
     <Page>
-      <Suspense fallback={<Skeleton />}>
-        <PostList />
-      </Suspense>
+      <div className='container'>
+        <h1>React Server Components in Hydrogen</h1>
+        <h2>With Streaming</h2>
+        <section>
+          <Link to='/server-post' target='_blank'>
+            🐌 SSR with streaming and server rendered posts without state
+          </Link>
+        </section>
+        <section>
+          <Link to='/server-post-state' target='_blank'>
+            🐌 SSR with streaming and server rendered posts with state (Pure
+            Client components rendered on the server)
+          </Link>
+        </section>
+        <section>
+          <Link to='/client-post' target='_blank'>
+            🐌 SSR with streaming and client rendered posts with state (Impure
+            Client components rendered on the client)
+          </Link>
+        </section>
+        <br />
+        <section>
+          <p>
+            <small>
+              This demo is built with
+              <a href='https://hydrogen.shopify.dev/' target='_blank'>
+                {`  Hydrogen  `}
+              </a>
+              and React Server Components.
+            </small>
+          </p>
+        </section>
+      </div>
     </Page>
   );
-}
-export const PostList = () => {
-  const { data } = useQuery(['posts'], getPosts);
-  if (!data?.data) return <span>Oops something went wrong on the Server</span>;
-
-  return (
-    <>
-      {data.data?.map((post) => (
-        <Suspense key={post.id} fallback={<Skeleton count={1} />}>
-          <Post key={post.id} postId={post.id} />
-        </Suspense>
-      ))}
-    </>
-  );
 };
+
+export default Home;
