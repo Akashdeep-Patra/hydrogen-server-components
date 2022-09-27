@@ -14,13 +14,13 @@ const Home = () => {
         </section>
         <section>
           <Link to='/server-post-state' target='_blank'>
-            🐌 SSR with streaming and server rendered posts with state (Pure
+            🐌 SSR with streaming and server rendered posts with state (
             Client components rendered on the server)
           </Link>
         </section>
         <section>
           <Link to='/client-post' target='_blank'>
-            🐌 SSR with streaming and client rendered posts with state (Impure
+            🐌 SSR with streaming and client rendered posts with state (
             Client components rendered on the client)
           </Link>
         </section>
